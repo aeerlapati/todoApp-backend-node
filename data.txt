@@ -1,5 +1,5 @@
-"{\"id\":893028,\"name\":\"Abhinav\",\"description\":\"test\",\"dueDate\":\"2025-03-06\",\"status\":\"Pending\"}"
-"{\"id\":37771,\"name\":\"Abhinav\",\"description\":\"test\",\"dueDate\":\"2023-05-06\",\"status\":\"Completed\"}"
-"{\"id\":826991,\"name\":\"Test\",\"description\":\"Test2\",\"dueDate\":\"2028-01-06\",\"status\":\"Pending\"}"
-"{\"id\":109367,\"name\":\"Test3\",\"description\":\"test3\",\"dueDate\":\"2027-09-08\",\"status\":\"Pending\"}"
-"{\"id\":342738,\"name\":\"Abhinav33\",\"description\":\"Test\",\"dueDate\":\"1994-01-06\",\"status\":\"Pending\"}"
+{"id":893028,"name":"Abhinav","description":"test","dueDate":"2025-03-06","status":"Pending"}
+{"id":37771,"name":"Abhinav","description":"test","dueDate":"2023-05-06","status":"Completed","completionDate":"2025-02-13"}
+{"id":826991,"name":"Test","description":"Test2","dueDate":"2028-01-06","status":"Pending"}
+{"id":109367,"name":"Test3","description":"test3","dueDate":"2027-09-08","status":"Pending"}
+{"id":342738,"name":"Abhinav33","description":"Test","dueDate":"1994-01-06","status":"Completed","completionDate":"2025-02-13"}

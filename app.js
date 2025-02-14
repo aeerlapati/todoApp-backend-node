@@ -1,16 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { handleWriteResponse, handleGetResponse } = require('./utils/posts');
+const { handleWriteResponse, handleGetResponse,  handleUpdateResponse} = require('./utils/posts');
 
 const app = express();
 
 app.use(bodyParser.json());
 
 app.use((req, res, next) => {
-  // Attach CORS headers
-  // Required when using a detached backend (that runs on a different domain)
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,UPDATE');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   console.log('Started the Server');
   next();
@@ -21,7 +19,7 @@ app.get('/canary', async (req, res) => {
 });
 
 
-app.get('/getTodoItem/:id', async (req, res) => {
+app.get('/get/todoItem/:id', async (req, res) => {
   try {
     const id = parseInt(req.params.id); 
     console.log(id);
@@ -55,9 +53,7 @@ app.post('/add/todoItem', async (req, res) => {
 app.get('/getAllTodoItems', async (req, res) => {
   try {
     const allTodos = await handleGetResponse();
-    const parsedTodos = allTodos.map(todo => JSON.parse(todo));
-    const sortedTodos = parsedTodos.sort((a, b) => {
-
+    const sortedTodos = allTodos.sort((a, b) => {
       const statusOrder = (status) => {
         if (status === 'Completed' || status === 'Cancelled') return 1;
         return -1;
@@ -68,11 +64,23 @@ app.get('/getAllTodoItems', async (req, res) => {
 
       return new Date(a.dueDate) - new Date(b.dueDate);
     });
-
-    console.log('Sorted todos:', sortedTodos);
     res.json(sortedTodos); 
   } catch (err) {
     console.error('Error:', err);
+    res.status(500).json({ message: 'Error' });
+  }
+});
+
+app.put('/update/todoItem/:id', async (req, res) => {
+  try {
+    const todoId = req.params.id;
+    const body = req.body; 
+    console.log(`Updating todo item with ID: ${todoId}`, body);
+    const response = await handleUpdateResponse(todoId, body);
+
+    res.json(response);
+  } catch (error) {
+    console.error('Error handling /update/todoItem:', error);
     res.status(500).json({ message: 'Error' });
   }
 });
