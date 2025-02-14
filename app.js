@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { handleWriteResponse, handleGetResponse } = require('./data/posts');
+const { handleWriteResponse, handleGetResponse } = require('./utils/posts');
 
 const app = express();
 
